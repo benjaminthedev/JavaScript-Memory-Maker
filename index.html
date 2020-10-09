@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="task-form">
+        <div class="input-field">
+            <label>Add A New Memory</label><br />
+            <textarea type="text" name="task" id="task" placeholder="Add A New Memory"></textarea>
+        </div>
+
+        <label for="themes">What Memory Theme?</label>
+        <br />
+
+        <select id="themes" name="theme" data-dropdown>
+            <option value="0">What memory category does it go under?</option>
+            <option value="1">Theme 01</option>
+            <option value="2">Theme 02</option>
+            <option value="3">Theme 03</option>
+            <option value="4">Theme 04</option>
+            <option value="5">Theme 05</option>
+        </select>
+        <br />
+
+        <input type="submit" value="Add A Memory" class="btn" />
+    </form>
+
+    <br />
+
+    <section class="tasks" id="showMe">
+        <div class="input-field">
+            <h2 class="filter">Filter Your Memories</h2>
+            <label for="filter">Filter Memories</label><br />
+            <br />
+            <input type="text" name="filter" id="filter" placeholder="Search for your Memories" />
+
+            <br />
+            <br />
+
+            <label for="themes">What Memory Category?</label>
+            <br />
+
+            <select id="themes" name="theme" data-dropdown>
+                <option value="0">Please select a memory category</option>
+                <option value="1">Theme 01</option>
+                <option value="2">Theme 02</option>
+                <option value="3">Theme 03</option>
+                <option value="4">Theme 04</option>
+                <option value="5">Theme 05</option>
+            </select>
+        </div>
+
+        <ul class="collection">
+            <h5>Your Memories:</h5>
+            <li class="collection-item">
+                <hr />
+            </li>
+        </ul>
+
+        <a href="#" class="clear-tasks btn">Delete Memories</a>
+    </section>
+
+
+</body>
+
+<script src="script.js"></script>
+
+</html>
