@@ -1,4 +1,4 @@
-console.log("Welcome");
+console.log("Welcome to your JavaScript Memory Maker!");
 
 // Define UI Vars
 const form = document.querySelector("#task-form");
@@ -10,8 +10,6 @@ const showMe = document.getElementById("showMe");
 
 //finding the select
 const firstSelector = document.querySelector("#themes");
-//Getting the value
-console.log(firstSelector.value);
 
 // Load all event listeners
 loadEventListeners();
@@ -19,19 +17,19 @@ loadEventListeners();
 // Load all event listeners
 function loadEventListeners() {
     // DOM Load event
-    document.addEventListener("DOMContentLoaded", getTasks);
-    // Add task event
-    form.addEventListener("submit", addTask);
-    // Remove task event
-    taskList.addEventListener("click", removeTask);
-    // Clear task event
-    clearBtn.addEventListener("click", clearTasks);
-    // Filter tasks event
-    filter.addEventListener("keyup", filterTasks);
+    document.addEventListener("DOMContentLoaded", getMemories);
+    // Add Memories event
+    form.addEventListener("submit", addMemory);
+    // Remove Memories event
+    taskList.addEventListener("click", removeMemory);
+    // Clear Memories event
+    clearBtn.addEventListener("click", clearMemory);
+    // Filter Memories event
+    filter.addEventListener("keyup", filterMemory);
 }
 
-// Get Tasks from LS
-function getTasks() {
+// Get Memories from LS
+function getMemories() {
     let tasks;
 
     if (localStorage.getItem("tasks") === null) {
@@ -71,10 +69,10 @@ function check() {
 }
 
 const timeCheck = setInterval(check, 1000);
-console.log(timeCheck);
+
 
 // Add Task
-function addTask(e) {
+function addMemory(e) {
     const selectMem01 = firstSelector.value;
     console.log(`This is the mem ${selectMem01}`);
 
@@ -97,7 +95,7 @@ function addTask(e) {
     taskList.appendChild(li);
 
     // Store in LS
-    storeTaskInLocalStorage(taskInput.value);
+    storeTaskInLocalStorage(taskInput.value, selectMem01);
 
     // Clear input
     taskInput.value = "";
@@ -105,21 +103,27 @@ function addTask(e) {
     e.preventDefault();
 }
 
-// Store Task
-function storeTaskInLocalStorage(task) {
+// Store Memories
+function storeTaskInLocalStorage(task, selectMem01) {
+
     let tasks;
-    if (localStorage.getItem("tasks") === null) {
+    let memoriesSelectNum;
+    if (localStorage.getItem("tasks") === null || localStorage.getItem("memoriesSelectNum") === null) {
         tasks = [];
+        memoriesSelectNum = [];
     } else {
         tasks = JSON.parse(localStorage.getItem("tasks"));
+        memoriesSelectNum = JSON.parse(localStorage.getItem("memoriesSelectNum"));
     }
     tasks.push(task);
+    memoriesSelectNum.push(selectMem01);
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("memoriesSelectNum", JSON.stringify(selectMem01));
 }
 
-// Remove Task
-function removeTask(e) {
+// Remove Memories
+function removeMemory(e) {
     if (e.target.parentElement.classList.contains("delete-item")) {
         if (confirm("Are You Sure?")) {
             e.target.parentElement.parentElement.remove();
@@ -130,7 +134,7 @@ function removeTask(e) {
     }
 }
 
-// Remove from LS
+// Remove Memories from LS
 function removeTaskFromLocalStorage(taskItem) {
     let tasks;
     if (localStorage.getItem("tasks") === null) {
@@ -144,12 +148,11 @@ function removeTaskFromLocalStorage(taskItem) {
             tasks.splice(index, 1);
         }
     });
-
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Clear Tasks
-function clearTasks() {
+// Clear Memories
+function clearMemory() {
     taskList.innerHTML = "";
 
     // Faster
@@ -165,8 +168,8 @@ function clearTasksFromLocalStorage() {
     localStorage.clear();
 }
 
-// Filter Tasks
-function filterTasks(e) {
+// Filter Memories
+function filterMemory(e) {
     const text = e.target.value.toLowerCase();
 
     document.querySelectorAll(".collection-item").forEach(function (task) {

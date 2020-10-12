@@ -1,0 +1,7 @@
+
+let memoriesSelectNum;
+if (localStorage.getItem("memoriesSelectNum") === null) {
+    memoriesSelectNum = [];
+} else {
+    memoriesSelectNum = JSON.parse(localStorage.getItem("memoriesSelectNum"));
+}
